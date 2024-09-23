@@ -2,35 +2,25 @@
 
 use Illuminate\Support\Facades\Route;
 
-/*
-|--------------------------------------------------------------------------
-| Web Routes
-|--------------------------------------------------------------------------
-|
-| Here is where you can register web routes for your application. These
-| routes are loaded by the RouteServiceProvider within a group which
-| contains the "web" middleware group. Now create something great!
-|
-*/
-
 Route::get('/', function () {
     return view('welcome');
 });
 
+// Routes clients
 Route::get('/clients/enregistrement', function () {
-    return "Clients enregistrement";
+    return "Enregistrement d'un client";
 });
 
 Route::get('/clients/enregistrer', function () {
-    return "Clients enregistrés";
+    return "Client enregistré avec succès";
 });
 
 Route::get('/clients/connexion', function () {
-    return "Connexion des clients";
+    return "Connexion du client";
 });
 
 Route::get('/clients/connecter', function () {
-    return "Clients connectés";
+    return "Client connecté avec succès";
 });
 
 Route::get('/clients/espace', function () {
@@ -42,35 +32,37 @@ Route::get('/clients/profil', function () {
 });
 
 Route::get('/clients/deconnecter', function () {
-    return "Clients déconnectés";
+    return "Client déconnecté avec succès";
 });
 
-
+// Routes ateliers
 Route::get('/ateliers/programmes', function () {
-    return "Consulter les programmes d'atelier";
+    return "Consulter les programmes d'ateliers";
 });
 
 Route::get('/ateliers/passes', function () {
     return "Consulter les ateliers passés";
 });
 
-// Participation route with dynamic parameter
+// Routes participations avec paramètre dynamique
 Route::get('/participation/{numAtelier}/proceder', function ($numAtelier) {
     return "Inscription à l'atelier numéro " . $numAtelier;
-})->where('numAtelier', '[0-9]+'); // Contrainte pour accepter uniquement des chiffres
+})->where('numAtelier', '[0-9]+');
 
 Route::get('/participation/{numAtelier}/annuler', function ($numAtelier) {
-    return "Désinscription à l'atelier numéro " . $numAtelier;
-})->where('numAtelier', '[0-9]+'); 
+    return "Désinscription de l'atelier numéro " . $numAtelier;
+})->where('numAtelier', '[0-9]+');
 
+// Routes commentaires d'ateliers
 Route::get('/ateliers/{numAtelier}/commentaires/voir', function ($numAtelier) {
-    return "Voir les commentaire de l'atelier numéro " . $numAtelier;
-})->where('numAtelier', '[0-9]+'); 
+    return "Voir les commentaires de l'atelier numéro " . $numAtelier;
+})->where('numAtelier', '[0-9]+');
 
 Route::get('/ateliers/{numAtelier}/commenter', function ($numAtelier) {
-    return "Coomenter un atelier numéro " . $numAtelier;
-})->where('numAtelier', '[0-9]+'); 
+    return "Commenter l'atelier numéro " . $numAtelier;
+})->where('numAtelier', '[0-9]+');
 
+// Fallback route
 Route::fallback(function () {
     return response()->view('errors.404', [], 404);
 });
